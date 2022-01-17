@@ -1,0 +1,3 @@
+[submodule "lsky"]
+	path = lsky
+	url = https://github.com/wisp-x/lsky-pro
