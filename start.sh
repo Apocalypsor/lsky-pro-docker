@@ -7,7 +7,7 @@ if [ -f "/lsky/.env" ]; then
         mv -n storage_bak/* storage/
     fi
     if [ "$INSTALL" != "true" ]; then
-        echo "ok" > install.lock
+        touch installed.lock
     fi
     chmod -R 777 storage
     supervisord
