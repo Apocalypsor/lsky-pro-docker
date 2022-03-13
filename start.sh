@@ -12,7 +12,6 @@ if [ -f "/lsky/.env" ]; then
     supervisord
     php artisan clear-compiled
     php artisan optimize
-    php artisan migrate
 else
     echo "配置文件不存在，请根据文档修改配置文件！"
 fi
