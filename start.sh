@@ -1,21 +1,17 @@
-#!/bin/bash
+#!/bin/sh
 
 if [ -f "/lsky/.env" ]; then
-    if [ "$INSTALL" == "true" ]; then
-        chmod 777 /lsky/application
-    else
-        echo "ok" > /lsky/application/install.lock
+    if [ ! -d "./storage/app" ]; then
+        mv -n storage_bak/* storage/
     fi
-    if [ "$(ls -A /lsky/image/)" ]; then
-        echo "Skip creating image folders"
-    else
-        for i in {10..99}; do
-          mkdir /lsky/image/20"$i"
-        done
+    if [ "$INSTALL" != "true" ]; then
+        echo "ok" > install.lock
     fi
-    ln -s /lsky/image/* /lsky/public/
-    chmod -R 777 /lsky/image
+    chmod -R 777 storage
     supervisord
+    php artisan clear-compiled
+    php artisan optimize
+    php artisan migrate
 else
     echo "配置文件不存在，请根据文档修改配置文件！"
 fi

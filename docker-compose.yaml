@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  lsky:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      - INSTALL=true
+    volumes:
+      - ./test/env.conf:/dujiaoka/.env
+      - ./test/storage:/dujiaoka/storage
+    ports:
+      - 127.0.0.1:55556:80
+
+  db:
+    image: mariadb:focal
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=test
+      - MYSQL_DATABASE=image
+      - MYSQL_USER=image
+      - MYSQL_PASSWORD=test
+    volumes:
+      - ./test/data:/var/lib/mysql

@@ -1,18 +1,18 @@
-FROM webdevops/php-nginx:7.4-alpine
+FROM webdevops/php-nginx:8.0-alpine
 
 WORKDIR /lsky
 
 ENV INSTALL=true
-ENV CONTAINER_UID=101
 
 COPY lsky/ /lsky
 COPY ./conf/default.conf /opt/docker/etc/nginx/vhost.conf
 COPY start.sh /
 
 RUN set -xe \
+    && composer install -vvv \
     && chmod +x /start.sh \
-    && mkdir /lsky/image \
-    && chmod -R 777 /lsky/runtime /lsky/public /lsky/config /lsky/image
+    && chmod 777 -R /lsky/storage \
+    && mv /lsky/storage /lsky/storage_bak
 
 VOLUME /lsky/image
 
