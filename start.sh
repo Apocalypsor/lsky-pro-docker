@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ -f "/lsky/.env" ]; then
-    chmod 777 /lsky/.env
+    php artisan key:generate
     if [ ! -d "./storage/app" ]; then
         mv -n storage_bak/* storage/
     fi
