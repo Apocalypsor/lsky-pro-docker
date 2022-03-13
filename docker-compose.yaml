@@ -9,8 +9,8 @@ services:
     environment:
       - INSTALL=true
     volumes:
-      - ./test/env.conf:/dujiaoka/.env
-      - ./test/storage:/dujiaoka/storage
+      - ./test/env.conf:/lsky/.env
+      - ./test/storage:/lsky/storage
     ports:
       - 55556:80
 
