@@ -13,6 +13,7 @@ RUN set -xe \
     && chmod +x /start.sh \
     && chown -R application:application /lsky/ \
     && chmod -R 0755 /lsky/ \
+    && sed -i "s?\$proxies;?\$proxies=\'\*\*\';?" /lsky/app/Http/Middleware/TrustProxies.php \
     && mv /lsky/storage /lsky/storage_bak
 
 VOLUME /lsky/image
