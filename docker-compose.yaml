@@ -12,7 +12,7 @@ services:
       - ./test/env.conf:/dujiaoka/.env
       - ./test/storage:/dujiaoka/storage
     ports:
-      - 127.0.0.1:55556:80
+      - 55556:80
 
   db:
     image: mariadb:focal
