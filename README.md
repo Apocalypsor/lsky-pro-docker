@@ -1,1 +1,1 @@
-# lsky-pro-docker
+# Docker for lsky-pro
